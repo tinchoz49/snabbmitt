@@ -1,2 +1,2 @@
 # snabbmitt
-Stateful components in Snabbdom using Mitt 
+*EXPERIMENTAL* Stateful components in Snabbdom using Mitt
