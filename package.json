@@ -1,0 +1,36 @@
+{
+  "name": "snabbmitt",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint .",
+    "start": "budo example/index.js --live --open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "eslintConfig": {
+    "extends": "postcss",
+    "env": {
+      "browser": true,
+      "node": true
+    },
+    "rules": {
+      "max-len": 0,
+      "no-use-before-define": 0,
+      "no-shadow": 0
+    }
+  },
+  "dependencies": {
+    "curry": "^1.2.0",
+    "mitt": "^1.1.0",
+    "snabbdom": "^0.6.6",
+    "xet": "^1.0.4"
+  },
+  "devDependencies": {
+    "budo": "^9.4.7",
+    "eslint": "^3.17.1",
+    "eslint-config-postcss": "^2.0.2"
+  }
+}
