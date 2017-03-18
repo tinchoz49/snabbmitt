@@ -42,5 +42,12 @@
     "mitt",
     "subtree",
     "components"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tinchoz49/snabbmitt.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tinchoz49/snabbmitt/issues"
+  }
 }
