@@ -18,8 +18,8 @@ module.exports = function Li({ emitter, props }) {
         emitter.emit('item:change');
     }
 
-    function view({ state }) {
-        return h('li', { on: { click: change } }, state.value);
+    function view({ state, props }) {
+        return h('li', { key: props.key, on: { click: change } }, state.value);
     }
 
     return {

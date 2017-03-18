@@ -21,7 +21,7 @@ module.exports = function List({ emitter, component, props }) {
     }
 
     function add() {
-        emitter.emit('item:add', { value: Date.now() });
+        emitter.emit('item:add', { value: `item ${Date.now()}` });
     }
 
     function remove() {

@@ -1,4 +1,8 @@
-const { start } = require('../index');
+const snabbmitt = require('../index');
+const { start } = snabbmitt([
+    require('snabbdom/modules/eventlisteners').default,
+    require('snabbdom/modules/style').default
+]);
 const List = require('./components/list');
 const h = require('snabbdom/h').default;
 
