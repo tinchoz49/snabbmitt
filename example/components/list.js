@@ -1,6 +1,4 @@
-//const snabbmitt = require('../index');
 const { component } = require('../../index');
-
 const Li = require('./li');
 const h = require('snabbdom/h').default;
 
