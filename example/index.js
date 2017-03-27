@@ -1,12 +1,12 @@
-const snabbmitt = require('../index');
-const { start } = snabbmitt([
+const { snabbmitt } = require('../index');
+const { start, component } = snabbmitt([
     require('snabbdom/modules/eventlisteners').default,
     require('snabbdom/modules/style').default
 ]);
 const List = require('./components/list');
 const h = require('snabbdom/h').default;
 
-function App({ emitter, component }) {
+function App({ emitter }) {
     function store() {
         const state = {
             time: Date.now()

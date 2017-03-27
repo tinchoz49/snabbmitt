@@ -1,4 +1,6 @@
-const { createComponent } = require('./lib/component');
+const { instanceComponent, component } = require('./lib/component');
+
+let defaultPatch;
 
 function createPatch(modules = []) {
     const snabbdom = require('snabbdom');
@@ -8,19 +10,34 @@ function createPatch(modules = []) {
     ], require('./lib/htmldomapi'));
 }
 
+
 function snabbmitt(opts) {
     let patch;
+
     if (typeof opts === 'function') {
         patch = opts;
+    } else if (!opts && defaultPatch) {
+        patch = defaultPatch;
     } else {
         patch = createPatch(opts);
     }
 
+    if (!defaultPatch) {
+        defaultPatch = patch;
+    }
+
     return {
         start(container, factory, props = {}) {
-            return createComponent({ patch, container, factory, props });
+            const instance = instanceComponent(patch, container, factory, props);
+            return instance.render({ noPatch: false, props });
+        },
+        component(factory, props = {}) {
+            return component(patch, factory, props);
         }
     };
 }
 
-module.exports = snabbmitt;
+exports.component = function (factory, props = {}) {
+    return component(defaultPatch, factory, props);
+};
+exports.snabbmitt = snabbmitt;

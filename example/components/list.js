@@ -1,7 +1,10 @@
+//const snabbmitt = require('../index');
+const { component } = require('../../index');
+
 const Li = require('./li');
 const h = require('snabbdom/h').default;
 
-module.exports = function List({ emitter, component, props }) {
+module.exports = function List({ emitter, props }) {
     function store() {
         const state = {
             items: props.items
@@ -28,13 +31,11 @@ module.exports = function List({ emitter, component, props }) {
         emitter.emit('item:remove');
     }
 
-    const li = component(Li);
-
     function view({ state }) {
-        return h('div#list', [
+        return h('div.list', { id: 'test' }, [
             h('button', { on: { click: add } }, 'add'),
             h('button', { on: { click: remove } }, 'remove'),
-            h('ul', state.items.map((value, key) => li({ value, key })))
+            h('ul', state.items.map((value, key) => component(Li, { value, key })))
         ]);
     }
 
