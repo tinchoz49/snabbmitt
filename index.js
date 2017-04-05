@@ -27,7 +27,7 @@ function snabbmitt(opts) {
     }
 
     return {
-        start(container, factory, props = {}) {
+        run(container, factory, props = {}) {
             const instance = instanceComponent(patch, container, factory, props);
             return instance.render({ usePatch: true, props });
         },
