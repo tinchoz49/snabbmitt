@@ -115,12 +115,15 @@ function App({ emitter }) {
     }
 
     let interval;
-    emitter.on('create', () => {
-        interval = setInterval(() => emitter.emit('clock:update'), 1000);
-    });
-    emitter.on('destroy', () => {
-        clearInterval(interval);
-    });
+    const hook = {
+        create() {
+            interval = setInterval(() => emitter.emit('clock:update'), 1000);
+        },
+        destroy(vnode, removeCallback) {
+            clearInterval(interval);
+            removeCallback();
+        }
+    };
 
     function displayDigit(digit) {
         if (digit < 10) {
@@ -141,7 +144,8 @@ function App({ emitter }) {
 
     return {
         view,
-        store
+        store,
+        hook
     };
 }
 ```
@@ -151,7 +155,7 @@ function App({ emitter }) {
 1. Each component has their own emitter and is passed as a destructuring argument for the component.
 2. In the store function, we define the `event handlers` that can do mutable updates to our state.
 3. There is no magic in snabbmitt, update your state doesn't mean that the component will be rendered again, you must force the render explicit using: `emitter.emit('render')`
-4. The hook implementation of snabbdom is great and snabbmitt know that, so in each component, you can hook up to the lifecycle of it using the emitter e.g. `emitter.on('create', () => ...)`
+4. The hook implementation of snabbdom is great and snabbmitt know that, so in each component, you can hook up to the lifecycle if you return also a hook object property.
 
 **and that's it!**
 
