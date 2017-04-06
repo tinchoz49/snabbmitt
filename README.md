@@ -192,12 +192,15 @@ function Clock({ emitter, props }) {
     }
 
     let interval;
-    emitter.on('create', () => {
-        interval = setInterval(() => emitter.emit('clock:update'), 1000);
-    });
-    emitter.on('destroy', () => {
-        clearInterval(interval);
-    });
+    const hook = {
+        create() {
+            interval = setInterval(() => emitter.emit('clock:update'), 1000);
+        },
+        destroy(vnode, removeCallback) {
+            clearInterval(interval);
+            removeCallback();
+        }
+    };
 
     function displayDigit(digit) {
         if (digit < 10) {
@@ -220,7 +223,8 @@ function Clock({ emitter, props }) {
 
     return {
         view,
-        store
+        store,
+        hook
     };
 }
 
