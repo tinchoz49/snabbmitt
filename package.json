@@ -1,6 +1,6 @@
 {
   "name": "snabbmitt",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Stateful components in Snabbdom using Mitt",
   "main": "index.js",
   "scripts": {
