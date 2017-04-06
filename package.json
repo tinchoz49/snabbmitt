@@ -26,10 +26,8 @@
     }
   },
   "dependencies": {
-    "curry": "^1.2.0",
     "mitt": "^1.1.0",
-    "snabbdom": "^0.6.6",
-    "xet": "^1.0.4"
+    "snabbdom": "^0.6.6"
   },
   "devDependencies": {
     "budo": "^9.4.7",
