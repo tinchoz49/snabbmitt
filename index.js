@@ -1,15 +1,6 @@
 const { instanceComponent, component } = require('./lib/component');
-
+const createPatch = require('./lib/patch');
 let defaultPatch;
-
-function createPatch(modules = []) {
-    const snabbdom = require('snabbdom');
-    return snabbdom.init([
-        ...modules,
-        require('./lib/remember-vnode')
-    ], require('./lib/htmldomapi'));
-}
-
 
 function snabbmitt(opts) {
     let patch;

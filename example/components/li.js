@@ -8,7 +8,7 @@ module.exports = function Li({ emitter, props }) {
 
         emitter.on('item:change', () => {
             state.value = Date.now();
-            emitter.emit('self:update');
+            emitter.emit('render');
         });
 
         return state;

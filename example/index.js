@@ -1,5 +1,5 @@
 const { snabbmitt } = require('../index');
-const { start, component } = snabbmitt([
+const { run, component } = snabbmitt([
     require('snabbdom/modules/eventlisteners').default,
     require('snabbdom/modules/style').default
 ]);
@@ -14,7 +14,7 @@ function App({ emitter }) {
 
         emitter.on('change:time', (e) => {
             state.time = e.time;
-            emitter.emit('self:update');
+            emitter.emit('render');
         });
 
         return state;
@@ -25,7 +25,7 @@ function App({ emitter }) {
     };
 
     function view({ state }) {
-        return h('div', {id: 'app'}, [
+        return h('div', { id: 'app' }, [
             h('h1', { on: { click: change } }, state.time),
             component(List, { items: ['test 1', 'test 2'] })
         ]);
@@ -42,5 +42,5 @@ window.addEventListener('DOMContentLoaded', () => {
     container.id = 'app';
     document.body.insertBefore(container, document.body.firstChild);
 
-    start(container, App);
+    run(container, App);
 });

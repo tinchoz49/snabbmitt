@@ -10,12 +10,12 @@ module.exports = function List({ emitter, props }) {
 
         emitter.on('item:add', (e) => {
             state.items.push(e.value);
-            emitter.emit('self:update');
+            emitter.emit('render');
         });
 
         emitter.on('item:remove', () => {
             state.items.pop();
-            emitter.emit('self:update');
+            emitter.emit('render');
         });
 
         return state;
