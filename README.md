@@ -6,6 +6,7 @@
 
 As you may know, Snabbdom is a really nice virtual DOM library, indeed, is enough mature and extensible to create more complex structures like
 `Stateful Components` with a composable, clear and fractal approach.
+
 On the other hand, a stateful component needs a way to manage their internal state and redraw. So, in that case, I think we can use simple event emitters and that's why Mitt is the best choice.
 
 It's better to understand with an example. Let's go to create a clock app.
