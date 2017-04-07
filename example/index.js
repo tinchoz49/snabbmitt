@@ -27,7 +27,9 @@ function App({ emitter }) {
     function view({ state }) {
         return h('div', { id: 'app' }, [
             h('h1', { on: { click: change } }, state.time),
-            component(List, { items: ['test 1', 'test 2'] })
+            component(List, { items: ['test 1', 'test 2'] }, [
+                component(List, { items: ['test 3', 'test 4'] })
+            ])
         ]);
     }
 

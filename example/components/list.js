@@ -29,11 +29,12 @@ module.exports = function List({ emitter, props }) {
         emitter.emit('item:remove');
     }
 
-    function view({ state }) {
+    function view({ state, children }) {
         return h('div.list', { id: 'test' }, [
             h('button', { on: { click: add } }, 'add'),
             h('button', { on: { click: remove } }, 'remove'),
-            h('ul', state.items.map((value, key) => component(Li, { value, key })))
+            h('ul', state.items.map((value, key) => component(Li, { value, key }))),
+            h('div.others', children)
         ]);
     }
 
