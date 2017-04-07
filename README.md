@@ -1,10 +1,12 @@
 # snabbmitt <a href="https://nodejs.org/api/documentation.html#documentation_stability_index"><img src="https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square" alt="API stability" /></a>
 
-> Stateful components in Snabbdom using Mitt and a subtree patching algorithm implementation
+> Stateful components in <a href="https://github.com/snabbdom/snabbdom" target="_blank">Snabbdom</a> using <a href="https://github.com/developit/mitt" target="_blank">Mitt</a> and a subtree patching algorithm implementation
 
 ## What is the idea?
 
-As you may know, <a href="https://github.com/snabbdom/snabbdom" target="_blank">Snabbdom</a> is a really nice virtual DOM library, indeed, is enough mature and extensible to create more complex structures like `Stateful Components` with a composable, clear and fractal approach.
+As you may know, Snabbdom is a really nice virtual DOM library, indeed, is enough mature and extensible to create more complex structures like
+`Stateful Components` with a composable, clear and fractal approach.
+On the other hand, a stateful component needs a way to manage their internal state and redraw. So, in that case, I think we can use simple event emitters and that's why Mitt is the best choice.
 
 It's better to understand with an example. Let's go to create a clock app.
 
