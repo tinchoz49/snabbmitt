@@ -138,7 +138,7 @@ function App({ emitter }) {
     }
 
     function view({ state }) {
-        return h('h1', [
+        return h('h1', { hook }, [
             h('span.hours', displayDigit(state.hours)),
             ':',
             h('span.minutes', displayDigit(state.minutes)),
@@ -149,8 +149,7 @@ function App({ emitter }) {
 
     return {
         view,
-        store,
-        hook
+        store
     };
 }
 ```
@@ -160,7 +159,7 @@ function App({ emitter }) {
 1. Each component has their own emitter and is passed as a destructuring argument for the component.
 2. In the store function, we define the `event handlers` that can do mutable updates to our state.
 3. There is no magic in snabbmitt, update your state doesn't mean that the component will be rendered again, you must force the render explicit using: `emitter.emit('render')`
-4. The hook implementation of snabbdom is great and snabbmitt know that, so in each component, you can hook up to the lifecycle if you return also a hook object property.
+4. The hook implementation of snabbdom is great and we use it to start/stop the timer of each component.
 
 **and that's it!**
 
@@ -215,7 +214,7 @@ function Clock({ emitter, props }) {
     }
 
     function view({ state, props }) {
-        return h('h1', [
+        return h('h1', { hook }, [
             props.name,
             ' => ',
             h('span.hours', displayDigit(state.hours)),
@@ -228,8 +227,7 @@ function Clock({ emitter, props }) {
 
     return {
         view,
-        store,
-        hook
+        store
     };
 }
 
