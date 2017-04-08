@@ -113,6 +113,10 @@ function App({ emitter }) {
                 state.minutes = 0;
             }
 
+            if (state.hours === 24) {
+                state.hours = 0;
+            }
+
             emitter.emit('render');
         });
 
@@ -189,6 +193,10 @@ function Clock({ emitter, props }) {
                 state.minutes = 0;
             }
 
+            if (state.hours === 24) {
+                state.hours = 0;
+            }
+
             emitter.emit('render');
         });
 
@@ -236,7 +244,7 @@ function App() {
         return h('div', [
             component(Clock, { name: 'Clock 1' }),
             component(Clock, { name: 'Clock 2', time: [5 ,20, 16] }),
-            component(Clock, { name: 'Clock 3', time: [24, 59, 40] })
+            component(Clock, { name: 'Clock 3', time: [23, 59, 40] })
         ]);
     }
 
