@@ -2,6 +2,23 @@ const { instanceComponent, component } = require('./lib/component');
 const createPatch = require('./lib/patch');
 let defaultPatch;
 
+function defineArgs(args) {
+    let props = {};
+    let children = [];
+
+    if (args.length === 2) {
+        [ props, children ] = args;
+    } else if (args.length === 1) {
+        if (Array.isArray(args[0])) {
+            children = args[0];
+        } else {
+            props = args[0];
+        }
+    }
+
+    return [ props, children ];
+}
+
 function snabbmitt(opts) {
     let patch;
 
@@ -23,25 +40,13 @@ function snabbmitt(opts) {
             return instance.render({ usePatch: true, props });
         },
         component(factory, ...args) {
-            let props = {};
-            let children = [];
-
-            if (args.length === 2) {
-                [ props, children ] = args;
-            } else if (args.length === 1) {
-                if (Array.isArray(args[0])) {
-                    children = args[0];
-                } else {
-                    props = args[0];
-                }
-            }
-
-            return component(patch, factory, props, children);
+            return component(patch, factory, ...defineArgs(args));
         }
     };
 }
 
-exports.component = function (factory, props = {}) {
-    return component(defaultPatch, factory, props);
+exports.component = function (factory, ...args) {
+    return component(defaultPatch, factory, ...defineArgs(args));
 };
+
 exports.snabbmitt = snabbmitt;
