@@ -9,6 +9,8 @@ As you may know, Snabbdom is a really nice virtual DOM library, indeed, is enoug
 
 On the other hand, a stateful component needs a way to manage their internal state and redraw. So, in that case, I think we can use simple event emitters and that's why Mitt is the best choice.
 
+You can try the [particles example](http://codepen.io/tinchoz49/pen/KWaJyj)
+
 It's better to understand with an example. Let's go to create a clock app.
 
 ### Creating the view for our app
