@@ -26,7 +26,12 @@ function snabbmitt(...args) {
     } else if (args.length === 0 && defaultPatch) {
         patch = defaultPatch;
     } else {
-        patch = require('snabbdom').init(...args);
+        const snabbdom = require('snabbdom');
+        if (args.length === 0) {
+            patch = snabbdom.init();
+        } else {
+            patch = snabbdom.init(...args);
+        }
     }
 
     if (!defaultPatch) {
