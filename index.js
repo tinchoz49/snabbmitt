@@ -1,5 +1,4 @@
 const { instanceComponent, component } = require('./lib/component');
-const createPatch = require('./lib/patch');
 let defaultPatch;
 
 function defineArgs(args) {
@@ -19,15 +18,15 @@ function defineArgs(args) {
     return [ props, children ];
 }
 
-function snabbmitt(opts) {
+function snabbmitt(...args) {
     let patch;
 
-    if (typeof opts === 'function') {
-        patch = opts;
-    } else if (!opts && defaultPatch) {
+    if (typeof args[0] === 'function') {
+        patch = args[0];
+    } else if (args.length === 0 && defaultPatch) {
         patch = defaultPatch;
     } else {
-        patch = createPatch(opts);
+        patch = require('snabbdom').init(...args);
     }
 
     if (!defaultPatch) {
