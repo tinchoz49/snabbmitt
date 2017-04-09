@@ -28,7 +28,7 @@ function snabbmitt(...args) {
     } else {
         const snabbdom = require('snabbdom');
         if (args.length === 0) {
-            patch = snabbdom.init();
+            patch = snabbdom.init([]);
         } else {
             patch = snabbdom.init(...args);
         }
